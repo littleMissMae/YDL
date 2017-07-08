@@ -36,16 +36,20 @@ def download_list(url_list):
     else:
         print("No")
 
-def clean_filename(dir_name, path):
+#Neaten filename
+def clean_filename(dirname):
+    path = '/home/emer/Media/Music/'+dirname
     for filename in os.listdir(path):
         print(filename)
         if filename.endswith('.mp3'):
-            newname = filename[:filename.index('-')]
+            i = filename.rfind('-')
+            newname = filename[:i]
             print(newname)
             os.rename(os.path.join(path,filename), os.path.join(path, newname))
 
 
-url_list = make_list(sys.argv[2])
+url_list = make_list(sys.argv[1])
 make_dir(sys.argv[2])
 download_list(url_list)
-#clean_filename(sys.argv[2,path]ko['-'])
+clean_filename(sys.argv[2])
+print('\n\nComplete')
